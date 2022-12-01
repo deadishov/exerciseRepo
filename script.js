@@ -1,9 +1,9 @@
-const a = "title";
-const b = "screens";
-const c = "screenPrice";
-const d = "rollback";
-const e = "fullPrice";
-const i = "adaptive";
+let title = "title";
+let screens = "screens";
+let screenPrice = "screenPrice";
+let rollback = "rollback";
+let fullPrice = "fullPrice";
+let adaptive = "adaptive";
 
 alert("Hey dude!");
 
