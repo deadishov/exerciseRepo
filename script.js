@@ -1,7 +1,9 @@
 let title = 'Just project';
 console.log(typeof title);
-let screens = 'Простые, Сложные, Интерактивные';
+let screens = 'Простые, Сложные, Интерактивные'; { }
 console.log(screens.length);
+console.log(screens.toLowerCase());
+console.log(screens.split(','));
 let screenPrice = 50;
 console.log('Стоимость верстки экранов ' + screenPrice + ' долларов');
 let rollback = 35;
