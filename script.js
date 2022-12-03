@@ -12,3 +12,5 @@ console.log('Стоимость разработки сайта ' + fullPrice + 
 console.log(typeof fullPrice);
 let adaptive = true;
 console.log(typeof adaptive);
+
+console.log(fullPrice * rollback / 100);
