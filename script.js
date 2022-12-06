@@ -47,3 +47,65 @@ if (fullPrice > 30000) {
 } else if (fullPrice < 0) {
     console.log('Что то пошло не так');
 }
+
+
+
+//  Задание 4
+
+
+let allServicePrices
+
+
+const getAllServicePrices = function () {
+    allServicePrices = Number(servicePrice1) + Number(servicePrice2)
+    console.log(allServicePrices);
+}
+
+function getFullPrice() {
+    function fullPrice(str) {
+        console.log(str);
+    }
+
+    fullPrice(Number(screenPrice) + allServicePrices)
+}
+
+const getTitle = function () {
+    const strTitle = title[0].toUpperCase() + title.slice(1);
+    console.log(strTitle);
+}
+
+const getServicePercentPrices = function () {
+    servicePercentPrice = Number(fullPrice) - Number(fullPrice) * rollback / 100
+    console.log(servicePercentPrice);
+}
+
+const showTypeOf = function (variable) {
+    console.log(variable, typeof variable);
+}
+
+const getRollbackMessage = function () {
+    if (fullPrice > 30000) {
+        console.log('Даем скидку в 10%');
+    } else if (15000 < fullPrice && fullPrice < 30000) {
+        console.log('Даем скидку в 5%');
+    } else if (0 < fullPrice && fullPrice < 15000) {
+        console.log('Скидка не предусмотрена');
+    } else if (fullPrice < 0) {
+        console.log('Что то пошло не так');
+    }
+}
+
+
+
+
+showTypeOf(title);
+showTypeOf(screenPrice);
+showTypeOf(adaptive);
+
+getRollbackMessage()
+getAllServicePrices()
+getFullPrice()
+getTitle()
+getServicePercentPrices()
+
+console.log(screens);
