@@ -53,31 +53,30 @@ if (fullPrice > 30000) {
 //  Задание 4
 
 
-let allServicePrices
 
-
-const getAllServicePrices = function () {
-    allServicePrices = Number(servicePrice1) + Number(servicePrice2)
-    console.log(allServicePrices);
+function getFullPrice(price1, price2) {
+    return price1 + price2;
 }
 
-function getFullPrice() {
-    function fullPrice(str) {
-        console.log(str);
-    }
-
-    fullPrice(Number(screenPrice) + allServicePrices)
+const getAllServicePrices = function (srvPrice1, srvPrice2) {
+    return srvPrice1 + srvPrice2;
+}
+function getTitle(opt1, opt2) {
+    return opt1 + opt2;
+}
+function getServicePercentPrices(perPrice) {
+    return perPrice - perPrice * rollback / 100;
 }
 
-const getTitle = function () {
-    const strTitle = title[0].toUpperCase() + title.slice(1);
-    console.log(strTitle);
-}
 
-const getServicePercentPrices = function () {
-    servicePercentPrice = Number(fullPrice) - Number(fullPrice) * rollback / 100
-    console.log(servicePercentPrice);
-}
+
+let allServicePrices = getAllServicePrices(Number(servicePrice1), Number(servicePrice2));
+fullPrice = getFullPrice(Number(screenPrice), Number(allServicePrices));
+title = getTitle(title[0].toUpperCase(), title.slice(1));
+servicePercentPrice = getServicePercentPrices(Number(fullPrice))
+
+
+
 
 const showTypeOf = function (variable) {
     console.log(variable, typeof variable);
@@ -106,6 +105,9 @@ getRollbackMessage()
 getAllServicePrices()
 getFullPrice()
 getTitle()
-getServicePercentPrices()
 
+console.log(fullPrice);
+console.log(allServicePrices);
+console.log(title);
+console.log(servicePercentPrice);
 console.log(screens);
