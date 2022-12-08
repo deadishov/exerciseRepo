@@ -6,10 +6,12 @@ let screens;
 let adaptive;
 let screenPrice;
 let fullPrice;
-let servicePercentPrice
+let servicePercentPrice;
 let rollback = 25;
 let serviceFirst;
 let serviceSecond;
+let srvPriceOne;
+let srvPriceTwo;
 
 
 
@@ -26,33 +28,40 @@ const isNumber = function (num) {
 
 const asking = function () {
     title = prompt('Как называется ваш проект?');
+
     screens = prompt('Какие типы экранов нужно разработать?', 'Простые, Сложные, Интерактивные');
-    screenPrice = prompt('Сколько будет стоить данная работа?', '12000');
 
-    while (!isNumber(screenPrice)) {
-        screenPrice = prompt('Сколько будет стоить данная работа?', '12000');
-    }
-
+    do {
+        screenPrice = prompt('Сколько будет стоить данная работа?');
+    } while (!isNumber(screenPrice));
 
     adaptive = confirm('Нужен ли адаптив на сайте?');
 }
 
 const getAllServicePrices = function () {
-    let sum = 0
 
     for (let i = 0; i < 2; i++) {
         if (i === 0) {
             serviceFirst = prompt('Какой дополнительный тип услуги нужен?');
+
+            do {
+                srvPriceOne = prompt('Сколько это будет стоить?');
+            } while (!isNumber((srvPriceOne)));
         } else if (i === 1) {
             serviceSecond = prompt('Какой дополнительный тип услуги нужен?');
+
+            do {
+                srvPriceTwo = prompt('Сколько это будет стоить?');
+            } while (!isNumber((srvPriceTwo)));
         }
 
 
-        sum += +prompt('Сколько это будет стоить?');
+
+
 
     }
 
-    return sum;
+    return Number(srvPriceOne) + Number(srvPriceTwo);
 }
 
 function getTitle(opt1, opt2) {
@@ -79,7 +88,8 @@ const getRollbackMessage = function () {
     }
 }
 
-asking()
+asking();
+getRollbackMessage();
 allServicePrices = getAllServicePrices();
 fullPrice = getFullPrice(Number(screenPrice), Number(allServicePrices));
 title = getTitle(title[0].toUpperCase(), title.slice(1));
