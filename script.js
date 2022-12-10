@@ -89,7 +89,6 @@ const getRollbackMessage = function () {
 }
 
 asking();
-getRollbackMessage();
 allServicePrices = getAllServicePrices();
 fullPrice = getFullPrice(Number(screenPrice), Number(allServicePrices));
 title = getTitle(title[0].toUpperCase(), title.slice(1));
@@ -99,6 +98,7 @@ servicePercentPrice = getServicePercentPrices(Number(fullPrice));
 showTypeOf(title);
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
+getRollbackMessage();
 
 
 console.log(fullPrice);
