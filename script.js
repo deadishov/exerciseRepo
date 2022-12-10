@@ -1,18 +1,5 @@
 'use strict';
 
-// let allServicePrices;
-// let title;
-// let screens;
-// let adaptive;
-// let screenPrice;
-// let fullPrice;
-// let servicePercentPrice;
-// let rollback = 25;
-// let serviceFirst;
-// let serviceSecond;
-// let srvPriceOne;
-// let srvPriceTwo;
-
 const appData = {
     allServicePrices: '',
     title: '',
@@ -34,6 +21,7 @@ const appData = {
         appData.fullPrice = appData.getFullPrice(Number(appData.screenPrice), Number(appData.allServicePrices));
         appData.title = appData.getTitle(appData.title[0].toUpperCase(), appData.title.slice(1));
         appData.servicePercentPrice = appData.getServicePercentPrices(Number(appData.fullPrice));
+        appData.logger();
     },
 
     asking: function () {
@@ -104,13 +92,17 @@ const appData = {
     },
 
     logger: function () {
-        console.log(appData.getRollbackMessage());
         console.log(appData.fullPrice);
         console.log(appData.allServicePrices);
         console.log(appData.title);
         console.log(appData.servicePercentPrice);
+        appData.getRollbackMessage();
+        console.log('Стоимость верстки экранов ' + appData.screenPrice + ' долларов' + ' и ' + 'Стоимость разработки сайта ' + appData.fullPrice + ' долларов');
+        for (let key in appData) {
+            console.log('Ключ:' + key + ' ' + 'Значение:' + appData[key]);
+        }
     }
 };
 
 
-appData.start()
+appData.start();
