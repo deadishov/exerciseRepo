@@ -13,14 +13,16 @@ const appData = {
     serviceSecond: '',
     srvPriceOne: 0,
     srvPriceTwo: 0,
+    sale: '',
 
     start: function () {
         appData.asking();
-        appData.isNumber()
+        appData.isNumber();
         appData.allServicePrices = appData.getAllServicePrices();
-        appData.fullPrice = appData.getFullPrice(Number(appData.screenPrice), Number(appData.allServicePrices));
-        appData.title = appData.getTitle(appData.title[0].toUpperCase(), appData.title.slice(1));
-        appData.servicePercentPrice = appData.getServicePercentPrices(Number(appData.fullPrice));
+        appData.fullPrice = appData.getFullPrice();
+        appData.title = appData.getTitle();
+        appData.servicePercentPrice = appData.getServicePercentPrices();
+        appData.sale = appData.getRollbackMessage();
         appData.logger();
     },
 
@@ -36,8 +38,8 @@ const appData = {
         appData.adaptive = confirm('Нужен ли адаптив на сайте?');
     },
 
-    getFullPrice: function (price1, price2) {
-        return price1 + price2;
+    getFullPrice: function () {
+        return Number(appData.screenPrice) + Number(appData.allServicePrices);
     },
 
     isNumber: function (num) {
@@ -62,42 +64,32 @@ const appData = {
                 } while (!appData.isNumber((appData.srvPriceTwo)));
             }
 
-
-
-
-
         }
 
         return Number(appData.srvPriceOne) + Number(appData.srvPriceTwo);
     },
 
-    getTitle: function (opt1, opt2) {
-        return opt1 + opt2;
+    getTitle: function () {
+        return appData.title[0].toUpperCase() + appData.title.slice(1);
     },
 
-    getServicePercentPrices: function (perPrice) {
-        return perPrice - perPrice * appData.rollback / 100;
+    getServicePercentPrices: function () {
+        return Number(appData.fullPrice) - Number(appData.fullPrice) * appData.rollback / 100;
     },
 
     getRollbackMessage: function () {
-        if (appData.fullPrice > 30000) {
-            console.log('Даем скидку в 10%');
-        } else if (15000 < appData.fullPrice && appData.fullPrice < 30000) {
-            console.log('Даем скидку в 5%');
-        } else if (0 < appData.fullPrice && appData.fullPrice < 15000) {
-            console.log('Скидка не предусмотрена');
-        } else if (appData.fullPrice < 0) {
-            console.log('Что то пошло не так');
+        if (Number(appData.fullPrice) > 30000) {
+            return 'Даем скидку в 10%';
+        } else if (15000 < Number(appData.fullPrice) && Number(appData.fullPrice) < 30000) {
+            return 'Даем скидку в 5%';
+        } else if (0 < Number(appData.fullPrice) && Number(appData.fullPrice) < 15000) {
+            return 'Скидка не предусмотрена';
+        } else if (Number(appData.fullPrice) < 0) {
+            return 'Что то пошло не так';
         }
     },
 
     logger: function () {
-        console.log(appData.fullPrice);
-        console.log(appData.allServicePrices);
-        console.log(appData.title);
-        console.log(appData.servicePercentPrice);
-        appData.getRollbackMessage();
-        console.log('Стоимость верстки экранов ' + appData.screenPrice + ' долларов' + ' и ' + 'Стоимость разработки сайта ' + appData.fullPrice + ' долларов');
         for (let key in appData) {
             console.log('Ключ:' + key + ' ' + 'Значение:' + appData[key]);
         }
