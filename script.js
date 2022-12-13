@@ -9,7 +9,7 @@ const appData = {
     fullPrice: 0,
     servicePercentPrice: 0,
     rollback: 25,
-    services: {},
+    services: [],
     sale: '',
 
     start: function () {
@@ -40,7 +40,7 @@ const appData = {
                 price = prompt('Сколько будет стоить данная работа?');
             } while (!appData.isNumber(price));
 
-            appData.screens.push({ id: i, name: name, price: price })
+            appData.screens.push({ id: i, name: name, price: price });
         }
 
 
@@ -56,7 +56,7 @@ const appData = {
                 price = prompt('Сколько это будет стоить?');
             } while (!appData.isNumber(price));
 
-            appData.services[name] = +price;
+            appData.services.push({ id: i, name: name, price: price });
 
         }
 
@@ -68,9 +68,9 @@ const appData = {
             appData.screenPrice += +screen.price;
         }
 
-        for (let key in appData.services) {
-            appData.allServicePrices += appData.services[key];
-        }
+        appData.allServicePrices = appData.services.reduce(function (sum, service) {
+            return sum + +service.price;
+        }, 0);
     },
 
     getFullPrice: function () {
@@ -111,4 +111,3 @@ const appData = {
 
 
 appData.start();
-console.log(appData.screens);
