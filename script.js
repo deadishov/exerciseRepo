@@ -34,5 +34,5 @@ fixNames[53].after(fixNames[51]);
 
 cloneLi.textContent = 'Глава 8: За пределами ES6';
 list[2].append(cloneLi);
-
+cloneLi.after(fixNames[26]);
 
