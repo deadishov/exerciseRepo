@@ -54,6 +54,9 @@ const appData = {
     },
     spanner: function () {
         getSpan.textContent = rollbackInput.value + '%';
+        //усложненное
+        rollbackPriceInput.value = Number(appData.fullPrice) - Number(appData.fullPrice) * rollbackInput.value / 100;
+        //усложненное
         appData.rollback = rollbackInput.value;
     },
     stopButton: function () {
