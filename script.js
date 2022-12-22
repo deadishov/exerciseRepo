@@ -214,8 +214,10 @@ const appData = {
 
 
         getAmountScr = document.querySelectorAll('.main-controls__item.screen input');
+
+        const self = this
         getAmountScr.forEach(function (input) {
-            appData.count += +input.value;
+            self.count += +input.value;
         });
 
 
