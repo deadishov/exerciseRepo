@@ -49,15 +49,13 @@ const appData = {
         appData.addTitle();
         appData.stopButton();
         appData.checkChange();
-        startButton.addEventListener('click', this.start);
-        plusBtn.addEventListener('click', this.addScreenBlock);
-        rollbackInput.addEventListener('input', this.spanner);
+        startButton.addEventListener('click', this.start.bind(appData));
+        plusBtn.addEventListener('click', this.addScreenBlock.bind(appData));
+        rollbackInput.addEventListener('input', this.spanner.bind(appData));
     },
     spanner: function () {
         getSpan.textContent = rollbackInput.value + '%';
-        //усложненное
-        rollbackPriceInput.value = Number(appData.fullPrice) - Number(appData.fullPrice) * rollbackInput.value / 100;
-        //усложненное
+        rollbackPriceInput.value = Number(this.fullPrice) - Number(this.fullPrice) * rollbackInput.value / 100;
         this.rollback = rollbackInput.value;
     },
     stopButton: function () {
@@ -72,11 +70,11 @@ const appData = {
     },
     checkChange: function () {
         selectInput.forEach((select) => {
-            select.addEventListener('change', this.stopButton);
+            select.addEventListener('change', this.stopButton.bind(appData));
         });
 
         getAmountScr.forEach((input) => {
-            input.addEventListener('input', this.stopButton);
+            input.addEventListener('input', this.stopButton.bind(appData));
         });
     },
     addTitle: function () {
@@ -96,7 +94,7 @@ const appData = {
     changeButton: function () {
         startButton.style.display = 'none';
         resetButton.style.display = 'block';
-        resetButton.addEventListener('click', this.fullReset);
+        resetButton.addEventListener('click', this.fullReset.bind(appData));
     },
     fullReset: function () {
         screens = document.querySelectorAll('.screen');
@@ -123,31 +121,31 @@ const appData = {
         });
 
 
-        appData.init();
-        appData.servicePricesPercent = 0,
-            appData.servicePricesNumber = 0,
-            appData.title = '',
-            appData.screens = [],
-            appData.adaptive = true,
-            appData.screenPrice = 0,
-            appData.fullPrice = 0,
-            appData.servicePercentPrice = 0,
-            appData.rollback = rollbackInput.value,
-            appData.servicesPercent = {},
-            appData.servicesNumber = {},
-            appData.count = 0
-        appData.showResult();
+
+        this.servicePricesPercent = 0,
+            this.servicePricesNumber = 0,
+            this.title = '',
+            this.screens = [],
+            this.adaptive = true,
+            this.screenPrice = 0,
+            this.fullPrice = 0,
+            this.servicePercentPrice = 0,
+            this.rollback = rollbackInput.value,
+            this.servicesPercent = {},
+            this.servicesNumber = {},
+            this.count = 0
+        this.showResult();
     },
     start: function () {
-        appData.addScreens();
-        appData.addServices();
-        appData.addPrices();
-        appData.logger();
-        appData.stopButton();
-        appData.checkChange();
-        appData.showResult();
-        appData.stopInputs();
-        appData.changeButton();
+        this.addScreens();
+        this.addServices();
+        this.addPrices();
+        this.logger();
+        this.stopButton();
+        this.checkChange();
+        this.showResult();
+        this.stopInputs();
+        this.changeButton();
     },
     showResult: function () {
         scrPriceInput.value = this.screenPrice;
