@@ -46,9 +46,9 @@ const appData = {
     servicesNumber: {},
     count: 0,
     init: function () {
-        appData.addTitle();
-        appData.stopButton();
-        appData.checkChange();
+        this.addTitle();
+        this.stopButton();
+        this.checkChange();
         startButton.addEventListener('click', this.start.bind(appData));
         plusBtn.addEventListener('click', this.addScreenBlock.bind(appData));
         rollbackInput.addEventListener('input', this.spanner.bind(appData));
@@ -108,7 +108,7 @@ const appData = {
             select.selectedIndex = 0
         })
         getAmountScr.forEach((input) => {
-            input.value = ''
+            input.value = '';
         })
         selectInput.forEach((select) => {
             select.disabled = false;
