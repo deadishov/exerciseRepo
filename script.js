@@ -49,9 +49,9 @@ const appData = {
         this.addTitle();
         this.stopButton();
         this.checkChange();
-        startButton.addEventListener('click', this.start.bind(appData));
-        plusBtn.addEventListener('click', this.addScreenBlock.bind(appData));
-        rollbackInput.addEventListener('input', this.spanner.bind(appData));
+        startButton.addEventListener('click', this.start.bind(this));
+        plusBtn.addEventListener('click', this.addScreenBlock.bind(this));
+        rollbackInput.addEventListener('input', this.spanner.bind(this));
     },
     spanner: function () {
         getSpan.textContent = rollbackInput.value + '%';
@@ -70,11 +70,11 @@ const appData = {
     },
     checkChange: function () {
         selectInput.forEach((select) => {
-            select.addEventListener('change', this.stopButton.bind(appData));
+            select.addEventListener('change', this.stopButton.bind(this));
         });
 
         getAmountScr.forEach((input) => {
-            input.addEventListener('input', this.stopButton.bind(appData));
+            input.addEventListener('input', this.stopButton.bind(this));
         });
     },
     addTitle: function () {
@@ -94,7 +94,7 @@ const appData = {
     changeButton: function () {
         startButton.style.display = 'none';
         resetButton.style.display = 'block';
-        resetButton.addEventListener('click', this.fullReset.bind(appData));
+        resetButton.addEventListener('click', this.fullReset.bind(this));
     },
     fullReset: function () {
         screens = document.querySelectorAll('.screen');
