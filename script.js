@@ -26,9 +26,14 @@ const rollbackPriceInput = document.getElementsByClassName('total-input')[4];
 
 const checkBoxes = document.querySelectorAll('.custom-checkbox');
 
+const cmsVar = document.querySelector('#cms-open')
+const hiddenBlock = document.querySelector('.hidden-cms-variants')
+const hiddenSelect = document.querySelector('#cms-select')
+const underHiddenBlock = document.querySelector('.hidden-cms-variants .main-controls__input')
+
 let screens = document.querySelectorAll('.screen');
 
-
+console.log(hiddenSelect);
 
 
 
@@ -49,6 +54,7 @@ const appData = {
         this.addTitle();
         this.stopButton();
         this.checkChange();
+        cmsVar.addEventListener('click', this.getCmsVars.bind(this));
         startButton.addEventListener('click', this.start.bind(this));
         plusBtn.addEventListener('click', this.addScreenBlock.bind(this));
         rollbackInput.addEventListener('input', this.spanner.bind(this));
@@ -91,6 +97,21 @@ const appData = {
             input.disabled = true;
         })
     },
+    getCmsVars: function () {
+        if (cmsVar.checked = false) {
+            hiddenBlock.style.display = 'none'
+        } else if (cmsVar.checked = true) {
+            hiddenBlock.style.display = 'flex';
+        }
+        hiddenSelect.addEventListener('change', this.getOneMore.bind(this))
+    },
+    getOneMore: function () {
+        if (hiddenSelect.options[hiddenSelect.selectedIndex].textContent === 'Другое') {
+            underHiddenBlock.style.display = 'inline-block';
+        } else {
+            underHiddenBlock.style.display = 'none';
+        }
+    },
     changeButton: function () {
         startButton.style.display = 'none';
         resetButton.style.display = 'block';
@@ -103,6 +124,7 @@ const appData = {
 
         resetButton.style.display = 'none';
         startButton.style.display = 'block';
+        hiddenBlock.style.display = 'none'
 
         selectInput.forEach((select) => {
             select.selectedIndex = 0
@@ -220,8 +242,13 @@ const appData = {
             self.count += +input.value;
         });
 
-
-        this.fullPrice = Number(this.screenPrice) + this.servicePricesPercent + this.servicePricesNumber;
+        const getFullPrice = () => {
+            this.fullPrice = Number(this.screenPrice) + this.servicePricesPercent + this.servicePricesNumber;
+            if (hiddenSelect.options[hiddenSelect.selectedIndex].textContent === 'WordPress') {
+                this.fullPrice = this.fullPrice + (this.fullPrice * 1 / 2);
+            }
+        };
+        getFullPrice();
         this.servicePercentPrice = Number(this.fullPrice) - Number(this.fullPrice) * this.rollback / 100;
     },
 
