@@ -98,10 +98,10 @@ const appData = {
         })
     },
     getCmsVars: function () {
-        if (cmsVar.checked = false) {
+        if (cmsVar.checked) {
+            hiddenBlock.style.display = 'flex'
+        } if (!cmsVar.checked) {
             hiddenBlock.style.display = 'none'
-        } else if (cmsVar.checked = true) {
-            hiddenBlock.style.display = 'flex';
         }
         hiddenSelect.addEventListener('change', this.getOneMore.bind(this))
     },
